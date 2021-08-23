@@ -78,7 +78,7 @@ spec:
           tcpSocket:
             port: 8080
           initialDelaySeconds: 15
-        name: datanode
+        name: jpaserver
         ports:
         - containerPort: 9779
           name: prometheus
