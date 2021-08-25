@@ -1,10 +1,8 @@
-# Build base image -- This was built and pushed to fhirfactory docker hub
-docker build --rm -t pegacorn-base-buildingblocks-fhirdm:1.0.0 . // (PLS DO NOT RUN THIS COMMAND)
-
 # Deploy JPA server
-docker pull fhirfactory/pegacorn-base-hapifhir-jpaserver:1.0.0
-docker pull gcr.io/distroless/java-debian10:11
+docker pull maven:3.6.3-jdk-11-slim
 docker pull tomcat:9.0.38-jdk11-openjdk-slim-buster
+
+mvn clean install -DskipTests
 
 docker build --rm --build-arg IMAGE_BUILD_TIMESTAMP="%date% %time%" -t pegacorn-buildingblocks-fhirdm:1.0.0-snapshot .
 
