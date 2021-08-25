@@ -72,7 +72,7 @@ spec:
         resources:
           requests:
             memory: "{{ add 128 .Values.jvmMaxHeapSizeMB }}Mi"
-        image: {{ .Values.dockerRepo }}pegacorn-hapifhir-jpaserver:{{ .Values.imageTag }}            
+        image: {{ .Values.dockerRepo }}pegacorn-buildingblocks-fhirdm:{{ .Values.imageTag }}            
         imagePullPolicy: {{ .Values.imagePullPolicy | default "IfNotPresent" }}
         livenessProbe:
           tcpSocket:

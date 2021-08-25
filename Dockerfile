@@ -1,4 +1,7 @@
-FROM fhirfactory/pegacorn-base-hapifhir-jpaserver:1.0.0 as build-hapi
+FROM fhirfactory/pegacorn-base-buildingblocks-fhirdm:1.0.0 as build-hapi
+
+COPY src/ /tmp/hapi-fhir-jpaserver-starter/src/
+RUN mvn clean install -DskipTests
 
 FROM build-hapi AS build-distroless
 RUN mvn package spring-boot:repackage -Pboot

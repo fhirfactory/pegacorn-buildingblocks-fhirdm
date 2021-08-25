@@ -1,16 +1,16 @@
 # Build base image -- This was built and pushed to fhirfactory docker hub
-docker build --rm -t pegacorn-base-hapifhir-jpaserver:1.0.0 --file Dockerfile . // (PLS DO NOT RUN THIS COMMAND)
+docker build --rm -t pegacorn-base-buildingblocks-fhirdm:1.0.0 . // (PLS DO NOT RUN THIS COMMAND)
 
 # Deploy JPA server
 docker pull fhirfactory/pegacorn-base-hapifhir-jpaserver:1.0.0
 docker pull gcr.io/distroless/java-debian10:11
 docker pull tomcat:9.0.38-jdk11-openjdk-slim-buster
 
-docker build --rm --build-arg IMAGE_BUILD_TIMESTAMP="%date% %time%" -t pegacorn-hapifhir-jpaserver:1.0.0-snapshot .
+docker build --rm --build-arg IMAGE_BUILD_TIMESTAMP="%date% %time%" -t pegacorn-buildingblocks-fhirdm:1.0.0-snapshot .
 
-\helm\helm upgrade pegacorn-hapifhir-jpaserver-site-a --install --namespace site-a --set serviceName=pegacorn-hapifhir-jpaserver,basePort=32210,imageTag=1.0.0-snapshot,numOfPods=1 helm
+\helm\helm upgrade pegacorn-buildingblocks-fhirdm-site-a --install --namespace site-a --set serviceName=pegacorn-buildingblocks-fhirdm,basePort=32210,imageTag=1.0.0-snapshot,numOfPods=1 helm
 
 Add the following to your hosts file (with Notepad [Adminstrator mode]) - C:\Windows\System32\drivers\etc
-127.0.0.1 pegacorn-hapifhir-jpaserver.site-a
+127.0.0.1 pegacorn-buildingblocks-fhirdm.site-a
 
-URL: http://pegacorn-hapifhir-jpaserver.site-a:32210
+URL: http://pegacorn-buildingblocks-fhirdm.site-a:32210
